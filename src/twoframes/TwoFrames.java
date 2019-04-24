@@ -7,10 +7,13 @@ import java.awt.event.ActionListener;
 
 public class TwoFrames extends JFrame {
     
+    public static TwoFrames mainFrame;
+    
     JButton buttonNewFrame;
     
     public TwoFrames(){
         createView();
+        this.setVisible(true);
         this.setSize(new Dimension(400, 200));
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -29,8 +32,8 @@ public class TwoFrames extends JFrame {
         buttonNewFrame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                setEnabled(false);
                 new FrameTwo();
-                setVisible(false);
             }
         });
         panelCenter.add(buttonNewFrame);
@@ -41,7 +44,7 @@ public class TwoFrames extends JFrame {
         SwingUtilities.invokeLater(new Runnable(){
             @Override
             public void run(){
-                new TwoFrames().setVisible(true);
+                mainFrame = new TwoFrames();
             }
         });
     }
